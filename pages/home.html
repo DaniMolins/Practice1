@@ -1,0 +1,48 @@
+<section class="carousel-container">
+  <div class="carousel">
+    <img src="img/main1.webp" alt="Hero 1" class="carousel-img active">
+    <img src="img/main2.webp" alt="Hero 2" class="carousel-img">
+    <img src="img/main3.webp" alt="Hero 3" class="carousel-img">
+  </div>
+
+  <div class="carousel-indicators">
+    <button class="indicator active" data-slide="0" aria-label="Slide 1"></button>
+    <button class="indicator" data-slide="1" aria-label="Slide 2"></button>
+    <button class="indicator" data-slide="2" aria-label="Slide 3"></button>
+  </div>
+
+  <div class="carousel-overlay">
+    <div class="overlay-header">
+      <h1>Plan traveler‑backed trips</h1>
+      <p>Search your first destination and build your route stop by stop.</p>
+    </div>
+
+    <form id="route-form" class="route-form">
+      <div id="route-stops-container">
+        <!-- Origin row (always first) -->
+        <div class="route-row route-origin-row" data-type="origin" draggable="true">
+          <span class="drag-handle hidden">⠿</span>
+          <input
+            type="text"
+            id="route-origin"
+            class="route-input"
+            placeholder="Where are you starting from?"
+            required
+          />
+        </div>
+
+        <!-- Destination row (always last, initially hidden) -->
+        <div class="route-row route-destination-row hidden" data-type="destination" draggable="true">
+          <span class="drag-handle hidden">⠿</span>
+          <input
+            type="text"
+            id="route-destination"
+            class="route-input"
+            placeholder="Where are you going?"
+            required
+          />
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,278 @@
+.carousel-container {
+  margin: 0 auto;
+  max-width: 100%;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 620px;
+}
+
+.carousel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.carousel-img.active {
+  opacity: 1;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.75rem;
+  z-index: 10;
+}
+
+.indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator:hover {
+  background: rgba(255, 255, 255, 0.4);
+  border-color: #ffffff;
+}
+
+.indicator.active {
+  background: #ffffff;
+  border-color: #ffffff;
+  width: 14px;
+  height: 14px;
+}
+
+.carousel-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 1.5rem;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.6));
+  text-align: center;
+  color: #ffffff;
+  z-index: 5;
+}
+
+.overlay-header {
+  flex-shrink: 0;
+  margin-bottom: 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.carousel-overlay h1 {
+  font-size: clamp(2rem, 3vw + 1rem, 3rem);
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.carousel-overlay p {
+  font-size: 1.1rem;
+  margin: 0;
+  max-width: 540px;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.route-form {
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 480px;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Scrollbar styling */
+.route-form::-webkit-scrollbar {
+  width: 8px;
+}
+
+.route-form::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.route-form::-webkit-scrollbar-thumb {
+  background: #047857;
+  border-radius: 10px;
+}
+
+.route-form::-webkit-scrollbar-thumb:hover {
+  background: #059669;
+}
+
+
+.route-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.route-row.dragging {
+  opacity: 0.5;
+}
+
+.route-row.drag-over {
+  background: rgba(4, 120, 87, 0.1);
+  border-radius: 8px;
+}
+
+.drag-handle {
+  cursor: grab;
+  font-size: 1.2rem;
+  color: #9ca3af;
+  user-select: none;
+  padding: 0.5rem;
+  transition: color 0.2s ease;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.drag-handle:hover {
+  color: #047857;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.route-row .route-input {
+  flex: 1;
+}
+
+.route-input {
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.route-input:focus {
+  border-color: #047857;
+  box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.1);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.add-stop-btn {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+}
+
+.add-stop-btn:hover {
+  background: #bae6fd;
+  transform: translateY(-1px);
+}
+
+.search-btn {
+  background: #047857;
+  color: #ffffff;
+  font-size: 0.95rem;
+  padding: 0.65rem 1.5rem;
+}
+
+.search-btn:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+/* Route form container */
+#route-stops-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Hidden class */
+.hidden {
+  display: none !important;
+}
+
+/* Route row with drag handle */
+.route-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 0.25rem;
+  border-radius: 8px;
+}
+
+.route-row.dragging {
+  opacity: 0.4;
+  transform: scale(0.98);
+  background: rgba(4, 120, 87, 0.05);
+}
+
+.route-row.drag-over {
+  background: rgba(199, 150, 90, 0.3);
+  border: 2px solid #c7965a;
+  border-radius: 8px;
+  transform: translateY(-2px);
+}
+
+.drag-handle {
+  cursor: grab;
+  font-size: 1.3rem;
+  color: #9ca3af;
+  user-select: none;
+  padding: 0.5rem 0.25rem;
+  transition: color 0.2s ease, opacity 0.3s ease;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.drag-handle:hover {
+  color: #047857;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.route-row .route-input {
+  flex: 1;
+}

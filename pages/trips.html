@@ -1,0 +1,92 @@
+
+<section class="trips-panel">
+    <header>
+    <h1>Your trips</h1>
+    <p>Create and manage your trips. Activities are saved in your browser (LocalStorage).</p>
+    </header>
+
+    <section class="trip-form">
+    <h2>New trip</h2>
+    <form id="trip-form">
+        <div class="field">
+        <label for="trip-name">Name</label>
+        <input id="trip-name" name="name" type="text" required>
+        </div>
+
+        <div class="field field--inline">
+        <div>
+            <label for="trip-start">Start date</label>
+            <input id="trip-start" name="start" type="date" required>
+        </div>
+        <div>
+            <label for="trip-end">End date</label>
+            <input id="trip-end" name="end" type="date" required>
+        </div>
+        </div>
+
+        <div class="field field--inline">
+        <div>
+            <label for="trip-origin">Origin</label>
+            <input id="trip-origin" name="origin" type="text" required>
+        </div>
+        <div>
+            <label for="trip-destination">Destination</label>
+            <input id="trip-destination" name="destination" type="text" required>
+        </div>
+        </div>
+
+        <button class="btn" type="submit">Save trip</button>
+    </form>
+</section>
+
+<section class="trip-list">
+    <h2>Saved trips</h2>
+    <ul id="trip-list">
+        <!-- Filled by trips.js from LocalStorage -->
+    </ul>
+    </section>
+</section>
+
+<section class="details-panel">
+    <section class="activities">
+    <h2>Activities for selected trip</h2>
+    <p id="no-trip-selected">Select a trip to manage its activities.</p>
+
+    <form id="activity-form" hidden>
+        <div class="field">
+        <label for="activity-title">Title</label>
+        <input id="activity-title" name="title" type="text" required>
+        </div>
+        <div class="field">
+        <label for="activity-day">Day / time</label>
+        <input id="activity-day" name="day" type="text" placeholder="Day 1 · Morning" required>
+        </div>
+        <div class="field">
+        <label for="activity-desc">Description</label>
+        <textarea id="activity-desc" name="description" rows="3" required></textarea>
+        </div>
+        <button class="btn" type="submit">Add activity</button>
+    </form>
+
+    <ul id="activity-list">
+        <!-- Activities will be rendered here -->
+    </ul>
+    </section>
+
+    <section class="ai-suggestions">
+    <h2>AI trip suggestions</h2>
+    <div id="ai-chat" class="chat-window">
+        <!-- Chat messages (user & AI) will be appended here -->
+    </div>
+    <form id="ai-form" class="chat-form">
+        <label class="visually-hidden" for="ai-input">Ask for suggestions</label>
+        <input
+        id="ai-input"
+        type="text"
+        placeholder="Ask for destination or activity ideas..."
+        required
+        >
+        <button class="btn" type="submit">Send</button>
+    </form>
+    </section>
+</section>
