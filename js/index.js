@@ -12,7 +12,7 @@ async function loadPage(page) {
     
     // Load page-specific CSS
     pageStylesLink.href = `css/${page}.css`;
-    
+
     // Initialize page-specific JS
     initPageScripts(page);
   } catch (err) {

@@ -1,92 +1,74 @@
-
-<section class="trips-panel">
-    <header>
-    <h1>Your trips</h1>
-    <p>Create and manage your trips. Activities are saved in your browser (LocalStorage).</p>
-    </header>
-
-    <section class="trip-form">
-    <h2>New trip</h2>
-    <form id="trip-form">
-        <div class="field">
-        <label for="trip-name">Name</label>
-        <input id="trip-name" name="name" type="text" required>
-        </div>
-
-        <div class="field field--inline">
-        <div>
-            <label for="trip-start">Start date</label>
-            <input id="trip-start" name="start" type="date" required>
-        </div>
-        <div>
-            <label for="trip-end">End date</label>
-            <input id="trip-end" name="end" type="date" required>
-        </div>
-        </div>
-
-        <div class="field field--inline">
-        <div>
-            <label for="trip-origin">Origin</label>
-            <input id="trip-origin" name="origin" type="text" required>
-        </div>
-        <div>
-            <label for="trip-destination">Destination</label>
-            <input id="trip-destination" name="destination" type="text" required>
-        </div>
-        </div>
-
-        <button class="btn" type="submit">Save trip</button>
-    </form>
-</section>
-
-<section class="trip-list">
-    <h2>Saved trips</h2>
-    <ul id="trip-list">
-        <!-- Filled by trips.js from LocalStorage -->
-    </ul>
-    </section>
-</section>
-
-<section class="details-panel">
-    <section class="activities">
-    <h2>Activities for selected trip</h2>
-    <p id="no-trip-selected">Select a trip to manage its activities.</p>
-
-    <form id="activity-form" hidden>
-        <div class="field">
-        <label for="activity-title">Title</label>
-        <input id="activity-title" name="title" type="text" required>
-        </div>
-        <div class="field">
-        <label for="activity-day">Day / time</label>
-        <input id="activity-day" name="day" type="text" placeholder="Day 1 · Morning" required>
-        </div>
-        <div class="field">
-        <label for="activity-desc">Description</label>
-        <textarea id="activity-desc" name="description" rows="3" required></textarea>
-        </div>
-        <button class="btn" type="submit">Add activity</button>
-    </form>
-
-    <ul id="activity-list">
-        <!-- Activities will be rendered here -->
-    </ul>
-    </section>
-
-    <section class="ai-suggestions">
-    <h2>AI trip suggestions</h2>
-    <div id="ai-chat" class="chat-window">
-        <!-- Chat messages (user & AI) will be appended here -->
+<section class="trips-container">
+    <div class="carousel">
+        <img
+            src="media/main1.webp"
+            alt="Background image 1"
+            class="carousel-img active"
+        />
+        <img
+            src="media/main2.webp"
+            alt="Background image 2"
+            class="carousel-img"
+        />
+        <img
+            src="media/main3.webp"
+            alt="Background image 3"
+            class="carousel-img"
+        />
     </div>
-    <form id="ai-form" class="chat-form">
-        <label class="visually-hidden" for="ai-input">Ask for suggestions</label>
-        <input
-        id="ai-input"
-        type="text"
-        placeholder="Ask for destination or activity ideas..."
-        required
-        >
-        <button class="btn" type="submit">Send</button>
-    </form>
-    </section>
+
+    <div class="carousel-indicators">
+        <button
+            class="indicator active"
+            data-slide="0"
+            aria-label="Slide 1"
+        ></button>
+        <button class="indicator" data-slide="1" aria-label="Slide 2"></button>
+        <button class="indicator" data-slide="2" aria-label="Slide 3"></button>
+    </div>
+
+    <div class="trips-overlay">
+        <div class="overlay-header">
+            <h1>Plan traveler‑backed trips</h1>
+            <p>
+                Search your first destination and build your route stop by stop.
+            </p>
+        </div>
+
+        <form id="route-form" class="route-form">
+            <div id="route-stops-container">
+                <!-- Origin row (always first) -->
+                <div
+                    class="route-row route-origin-row"
+                    data-type="origin"
+                    draggable="true"
+                >
+                    <span class="drag-handle hidden">⠿</span>
+                    <input
+                        type="text"
+                        id="route-origin"
+                        class="route-input"
+                        placeholder="Where are you starting from?"
+                        required
+                    />
+                </div>
+
+                <!-- Destination row (always last, initially hidden) -->
+                <div
+                    class="route-row route-destination-row hidden"
+                    data-type="destination"
+                    draggable="true"
+                >
+                    <span class="drag-handle hidden">⠿</span>
+                    <input
+                        type="text"
+                        id="route-destination"
+                        class="route-input"
+                        placeholder="Where are you going?"
+                        required
+                    />
+                </div>
+            </div>
+        </form>
+    </div>
 </section>
