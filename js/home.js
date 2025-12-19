@@ -84,9 +84,7 @@ function initHome() {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const destination = input.value.trim();
-    if (destination) {
-      localStorage.setItem("tripDestination", destination);
-      window.location.href = "?page=trips";
-    }
+    localStorage.setItem("tripDestination", destination);
+    window.location.href = "?page=trips";
   });
 }

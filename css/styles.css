@@ -1,12 +1,14 @@
-/* ====== Reset / Base ====== */
+:root {
+    --header-height: 70px;
+    --gold: 210, 163, 100; /* #d2a364 */
+    --gold-transparent: rgba(210, 163, 100, 0.7);
+}
+
+/* Reset / base */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
-}
-
-:root {
-    --header-height: 70px; /* match your real header height */
 }
 
 html,
@@ -25,7 +27,29 @@ body {
     overflow: hidden;
 }
 
-/* ====== Header ====== */
+.no-drag,
+.site-header,
+.logo-center,
+.home-card,
+.nav-left a,
+.nav-right *,
+h1,
+h2,
+h3,
+p,
+img {
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+h1,
+h2,
+h3,
+p {
+    text-shadow: 2px 4px 16px rgba(0, 0, 0, 1);
+}
+
+/* Header */
 .site-header {
     position: fixed;
     top: 1.5rem;
@@ -38,64 +62,72 @@ body {
     align-items: center;
 }
 
-.header-inner {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 3rem;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 4rem;
-    height: 100%;
-}
-
-.page-root {
-    padding: 0 1.5rem 3rem;
-    max-width: 90%;
-    margin: 0 auto;
-    margin-top: var(--header-height); /* push content below navbar */
-}
-
 body.scrolled .site-header {
     background: #ffffff;
     border-bottom: 1px solid #e5e7eb;
 }
 
+.page-root {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Main navbar container */
+.navbar {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
 /* Left nav */
-/* Left nav - larger, transparent buttons */
 .nav-left {
     display: flex;
+    flex: 0 0 auto;
     gap: 1.5rem;
     align-items: center;
-    justify-self: start;
 }
 
 .nav-left a {
     text-decoration: none;
     color: #ffffff;
     font-size: 1.05rem;
+    width: 120px;
     font-weight: 500;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     padding: 0.6rem 1.25rem;
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.25);
     background: rgba(255, 255, 255, 0.1);
     transition: all 0.2s ease;
+    backdrop-filter: blur(8px);
 }
 
 .nav-left a:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--gold-transparent);
     border-color: rgba(255, 255, 255, 0.4);
 }
 
 .nav-left a.active {
-    background: rgba(4, 120, 87, 0.3);
-    border-color: rgba(4, 120, 87, 0.5);
+    background: var(--gold-transparent);
+    border-color: var(--gold-transparent);
 }
 
-/* Center: Trip [Logo] Planner */
+/* Center logo/title */
 .nav-center {
     display: flex;
+    flex: 0 1 auto;
+    text-align: center;
     align-items: center;
     justify-content: center;
     gap: 1rem;
@@ -107,13 +139,13 @@ body.scrolled .site-header {
     gap: 1rem;
     text-decoration: none;
     color: #ffffff;
-    font-size: 1.75rem; /* much larger */
+    font-size: 1.75rem;
     font-weight: 700;
     letter-spacing: 0.02em;
 }
 
 .logo-img {
-    height: 92px; /* larger logo */
+    height: 92px;
     width: 92px;
     object-fit: contain;
 }
@@ -123,23 +155,33 @@ body.scrolled .site-header {
     display: flex;
     align-items: center;
     gap: 1.25rem;
-    justify-self: end;
+    flex: 1 1 0;
+    max-width: 660px; /* or clamp here too if you want */
+}
+
+.top-search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
 }
 
 .top-search input {
+    flex: 1 1 auto;
+    width: clamp(200px, 100%, 460px); /* min 200px, max 460px */
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.7);
     padding: 0.6rem 1.25rem;
     font-size: 0.95rem;
-    width: 200px;
     outline: none;
-    color: #fff;
+    color: rgba(0, 0, 0, 1);
     transition: all 0.2s ease;
+    backdrop-filter: blur(8px);
 }
 
 .top-search input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(0, 0, 0, 0.7);
 }
 
 .top-search input:focus {
@@ -147,8 +189,22 @@ body.scrolled .site-header {
     background: rgba(255, 255, 255, 0.25);
 }
 
-/* Buttons */
+.nav-right button {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 0.6rem 1.25rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+    backdrop-filter: blur(8px);
+}
+
+/* Generic buttons */
 .btn {
+    width: 100px;
     border-radius: 999px;
     border: none;
     padding: 0.5rem 1.2rem;
@@ -156,13 +212,14 @@ body.scrolled .site-header {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+    backdrop-filter: blur(8px);
 }
 
 .btn-outline {
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.4);
     background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    color: rgba(195, 143, 87, 0.5);
     padding: 0.5rem 1.25rem;
     font-size: 0.9rem;
     font-weight: 600;
@@ -171,23 +228,83 @@ body.scrolled .site-header {
 }
 
 .btn-outline:hover {
-    background: #ffffff;
+    background: var(--gold-transparent);
     color: #111827;
 }
 
-.page-root {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    max-width: 100%;
+@media (max-width: 1324px) and (min-width: 768px) {
+    .site-header {
+        position: fixed;
+        top: 3rem; /* keep same offset */
+    }
+
+    .navbar {
+        top: 1.5rem;
+        padding: 0.5rem 1.5rem; /* adds a bit of top/bottom, keeps header top constant */
+        flex-wrap: wrap;
+        row-gap: 0.75rem;
+        column-gap: 0.75rem;
+    }
+
+    .nav-left,
+    .nav-right {
+        order: 1; /* both on the first row */
+        flex: 1 1 0; /* same width on each side */
+        display: flex;
+        justify-content: center; /* center their a/button children */
+        gap: 0.75rem;
+    }
+
+    .nav-center {
+        order: 0;
+        flex-basis: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-left a,
+    .nav-right a,
+    .nav-right button {
+        text-align: center;
+    }
 }
 
-/* ====== Footer ====== */
-.site-footer {
-    background: #f3f4f6;
-    border-top: 1px solid #e5e7eb;
-    padding: 1.5rem 1.5rem;
-    text-align: center;
-    color: #6b7280;
-    font-size: 0.875rem;
+@media (max-width: 768px) {
+    .site-header {
+        position: fixed;
+        top: 4.6rem; /* keep same offset */
+    }
+
+    .navbar {
+        top: 1.5rem;
+        padding: 0 1rem;
+        flex-direction: column; /* stack vertically */
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .nav-center {
+        /* logo first */
+        order: 1;
+        width: auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-left {
+        /* buttons second */
+        order: 2;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .nav-right {
+        /* search/login third */
+        order: 3;
+        display: flex;
+        gap: 0.5rem;
+        width: 100%;
+    }
 }

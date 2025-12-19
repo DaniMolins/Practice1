@@ -128,8 +128,10 @@ body.page-home {
     inset: 0;
     z-index: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 2rem;
     transition:
         transform 0.6s ease,
         opacity 0.6s ease;
@@ -139,11 +141,6 @@ body.page-home {
 .home-main {
     transform: translateY(0);
     opacity: 1;
-}
-
-.home-section {
-    transform: translateY(100%);
-    opacity: 0;
 }
 
 /* states */
@@ -157,77 +154,118 @@ body.page-home {
     opacity: 0;
 }
 
+.home-section {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    opacity: 0;
+}
+
 .home-section.active {
     transform: translateY(0);
     opacity: 1;
 }
 
-/* Cards grid */
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 260px));
-    gap: 1.5rem;
-    max-width: 720px;
+home-cards {
+    margin-top: 2rem;
 }
 
-/* Clickable card */
+.home-cards-grid {
+    top: 10em;
+}
+
+.home-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* one card per row */
+    gap: 1.4rem;
+
+    max-height: 40vh; /* how tall the grid area is */
+    overflow-y: auto; /* vertical scroll inside the grid */
+    padding-right: 0.5rem; /* space for scrollbar */
+}
+
+/* Container with rounded border, shadow, white background */
+.home-card-inner {
+    background: #ffffff;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* Image fully on top */
+.home-card-img {
+    display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    padding: 2%;
+    border-radius: 1.2rem;
+}
+
+/* Text block below image */
+.home-card-body {
+    padding: 0.9rem 0.9rem 1rem;
+}
+
+.home-section h1 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(2.5rem, 6vw, 3rem);
+    font-weight: 700;
+    color: #ffffff; /* adjust to your palette */
+    text-align: center;
+}
+
+.home-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 3fr));
+    gap: 1.4rem;
+}
+
+/* When 3 no longer fit, 1 row */
+@media (max-width: 1100px) {
+    .home-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Card overall */
 .home-card {
+    display: block;
     text-decoration: none;
     color: inherit;
-}
-
-.home-cards-title {
-    font-size: clamp(2.5rem, 8vw, 4rem);
-    font-weight: 700;
-    color: #fff;
-    margin: 0;
-    text-align: center;
-    line-height: 1.2;
-}
-
-/* Card inner with border + image */
-.home-card-inner {
-    position: relative;
-    overflow: hidden;
-    border-radius: 1.25rem;
-    padding: 6px; /* padding so border is visible */
-    background: rgba(15, 23, 42, 0.6); /* transparent dark tone */
-    border: 1px solid rgba(148, 163, 184, 0.6);
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
-}
-
-/* Card image */
-.home-card-inner img {
+    padding: 1%;
     width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 1rem;
-    display: block;
+    outline: none;
 }
 
-/* White text overlay */
-.home-card-overlay {
-    position: absolute;
-    inset: 6px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 1rem;
-    border-radius: 1rem;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0));
-    color: #f9fafb;
-}
-
-.home-card-overlay h3 {
-    margin: 0 0 0.25rem;
-    font-size: 1.05rem;
+/* Badges row */
+.home-card-badge {
+    display: inline-block;
+    font-size: 0.7rem;
     font-weight: 600;
+    color: #047857;
+    background: #ecfdf5;
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+    margin-right: 0.35rem;
+    margin-bottom: 0.4rem;
 }
 
-.home-card-overlay p {
+/* Title */
+.home-card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Meta line */
+.home-card-meta {
     margin: 0;
-    font-size: 0.9rem;
-    color: #e5e7eb;
+    font-size: 0.8rem;
+    color: #4b5563;
 }
 
 /* arrow section pinned near bottom center */
