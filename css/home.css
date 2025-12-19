@@ -166,8 +166,8 @@ body.page-home {
     opacity: 1;
 }
 
-home-cards {
-    margin-top: 2rem;
+#home-cards {
+    margin-top: 8rem;
 }
 
 .home-cards-grid {
