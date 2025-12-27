@@ -9,7 +9,7 @@ async function loadPage(page) {
     const html = await res.text();
     root.innerHTML = html;
     titleEl.textContent = `TripPlanner+ · ${capitalize(page)}`;
-    
+
     // Load page-specific CSS
     pageStylesLink.href = `css/${page}.css`;
 

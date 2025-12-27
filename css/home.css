@@ -1,4 +1,4 @@
-/* ===== Home video section (full viewport) ===== */
+/* ===== Home video section  ===== */
 .home-video {
     position: relative;
     width: 100%;
@@ -13,7 +13,6 @@ body.page-home {
     overflow-y: auto;
 }
 
-/* Background video fills entire section */
 .home-video-bg {
     position: absolute;
     top: 0;
@@ -23,7 +22,6 @@ body.page-home {
     object-fit: cover;
 }
 
-/* Container with content centered */
 .home-container {
     width: 100%;
     max-width: 720px;
@@ -36,7 +34,6 @@ body.page-home {
     position: relative;
 }
 
-/* Title + subtitle (center) */
 .home-container h1 {
     font-size: clamp(2.5rem, 8vw, 4rem);
     font-weight: 700;
@@ -54,7 +51,6 @@ body.page-home {
     max-width: 520px;
 }
 
-/* Form + input with button */
 .route-form {
     width: 100%;
     max-width: 600px;
@@ -70,10 +66,6 @@ body.page-home {
     padding: 0.5rem 0.5rem 0.5rem 1.5rem;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
     transition: padding 0.3s ease;
-}
-
-.input-wrapper.has-content {
-    padding-right: 0.5rem;
 }
 
 .route-input {
@@ -137,13 +129,11 @@ body.page-home {
         opacity 0.6s ease;
 }
 
-/* initial positions */
 .home-main {
     transform: translateY(0);
     opacity: 1;
 }
 
-/* states */
 .home-main.active {
     transform: translateY(0);
     opacity: 1;
@@ -176,15 +166,14 @@ body.page-home {
 
 .home-cards-grid {
     display: grid;
-    grid-template-columns: 1fr; /* one card per row */
+    grid-template-columns: 1fr;
     gap: 1.4rem;
 
-    max-height: 40vh; /* how tall the grid area is */
-    overflow-y: auto; /* vertical scroll inside the grid */
-    padding-right: 0.5rem; /* space for scrollbar */
+    max-height: 40vh;
+    overflow-y: auto;
+    padding-right: 0.5rem;
 }
 
-/* Container with rounded border, shadow, white background */
 .home-card-inner {
     background: #ffffff;
     border-radius: 1rem;
@@ -194,7 +183,6 @@ body.page-home {
     backdrop-filter: blur(10px);
 }
 
-/* Image fully on top */
 .home-card-img {
     display: block;
     width: 100%;
@@ -204,7 +192,6 @@ body.page-home {
     border-radius: 1.2rem;
 }
 
-/* Text block below image */
 .home-card-body {
     padding: 0.9rem 0.9rem 1rem;
 }
@@ -213,7 +200,7 @@ body.page-home {
     margin: 0 0 0.5rem;
     font-size: clamp(2.5rem, 6vw, 3rem);
     font-weight: 700;
-    color: #ffffff; /* adjust to your palette */
+    color: #ffffff;
     text-align: center;
 }
 
@@ -223,14 +210,6 @@ body.page-home {
     gap: 1.4rem;
 }
 
-/* When 3 no longer fit, 1 row */
-@media (max-width: 1100px) {
-    .home-cards-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Card overall */
 .home-card {
     display: block;
     text-decoration: none;
@@ -240,7 +219,7 @@ body.page-home {
     outline: none;
 }
 
-/* Badges row */
+/* Card row */
 .home-card-badge {
     display: inline-block;
     font-size: 0.7rem;
@@ -253,7 +232,6 @@ body.page-home {
     margin-bottom: 0.4rem;
 }
 
-/* Title */
 .home-card-title {
     font-size: 0.95rem;
     font-weight: 600;
@@ -261,14 +239,13 @@ body.page-home {
     text-decoration: none;
 }
 
-/* Meta line */
 .home-card-meta {
     margin: 0;
     font-size: 0.8rem;
     color: #4b5563;
 }
 
-/* arrow section pinned near bottom center */
+/* arrow on bottom center */
 .toggle-section {
     position: absolute;
     inset-inline: 0;
@@ -278,12 +255,12 @@ body.page-home {
     justify-content: center;
 }
 
-/* round transparent button like navbar */
 .toggle-btn {
     margin-top: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.25);
     background: rgba(15, 23, 42, 0.4);
     backdrop-filter: blur(8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
     color: #f9fafb;
     width: 3rem;
     height: 3rem;
@@ -293,5 +270,11 @@ body.page-home {
     justify-content: center;
     font-size: 1.4rem;
     cursor: pointer;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* When 3 no longer fit, 1 row */
+@media (max-width: 1100px) {
+    .home-cards-grid {
+        grid-template-columns: 1fr;
+    }
 }

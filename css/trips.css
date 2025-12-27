@@ -1,15 +1,14 @@
-/* ===== Trips container ===== */
-.trips-container {
-    top: 0;
-    height: 100vh;
-    margin: 0 auto;
-    max-width: 100%;
+/* Trips background */
+.trips-background {
     position: relative;
+    width: 100%;
+    height: 100vh;
     overflow: hidden;
-    min-height: 620px;
+    background: #000;
+    margin: 0;
+    padding: 0;
 }
 
-/* ===== Carousel ===== */
 .carousel {
     position: absolute;
     inset: 0;
@@ -23,7 +22,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0;
     transition: opacity 0.6s ease-in-out;
 }
 
@@ -31,98 +29,100 @@
     opacity: 1;
 }
 
-/* ===== Carousel indicators ===== */
-.carousel-indicators {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 0.75rem;
-    z-index: 10;
-}
-
-.indicator {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.indicator:hover {
-    background: rgba(255, 255, 255, 0.4);
-    border-color: #ffffff;
-}
-
-.indicator.active {
-    background: #ffffff;
-    border-color: #ffffff;
-    width: 14px;
-    height: 14px;
-}
-
-/* ===== Trips overlay ===== */
-.trips-overlay {
-    position: absolute;
+/* Overlay sections */
+.trip-form-section,
+.trip-collection-section {
+    position: fixed;
     inset: 0;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2.5rem 1.5rem;
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.35),
-        rgba(0, 0, 0, 0.6)
-    );
+    justify-content: flex-start;
+    gap: 2rem;
+    padding-top: 9rem;
+    padding-inline: 1.5rem;
+    padding-bottom: 5rem;
+    transition:
+        transform 0.6s ease,
+        opacity 0.6s ease;
+}
+
+.trip-form-section h1,
+.trip-collection-section h1 {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
     text-align: center;
-    color: #ffffff;
-    z-index: 5;
+    line-height: 1.2;
+}
+
+.trip-form-section.slide-up {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+/* collection hidden by default */
+.trip-collection-section {
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.trip-collection-section.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/*  Trip overlay card  */
+
+.trips-overlay {
+    width: 100%;
+    max-width: 720px;
+    padding: 2rem 1.5rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+    border-radius: 1.5rem;
+    position: relative;
 }
 
 .overlay-header {
-    flex-shrink: 0;
-    margin-top: 10%;
-    margin-bottom: 1.5rem;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    text-align: center;
+    color: #ffffff;
 }
 
 .trips-overlay h1 {
-    font-size: clamp(2rem, 3vw + 1rem, 3rem);
+    font-size: clamp(2.4rem, 6vw, 3.2rem);
     font-weight: 700;
     margin: 0 0 0.5rem;
     letter-spacing: -0.02em;
 }
 
 .trips-overlay p {
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
     margin: 0;
     max-width: 540px;
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(255, 255, 255, 0.9);
 }
 
-/* ===== Route form ===== */
+/*  Route form  */
 .route-form {
-    background: rgba(255, 255, 255, 0.98);
     border-radius: 12px;
-    padding: 1.25rem;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    padding: 1.8rem;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
     display: flex;
     flex-direction: column;
-    margin-top: 2%;
     gap: 1rem;
     width: 100%;
-    max-width: 50vh;
     max-height: 50vh;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
-/* Scrollbar styling */
 .route-form::-webkit-scrollbar {
     width: 8px;
 }
@@ -141,15 +141,15 @@
     background: #059669;
 }
 
-/* Route stops container */
-#route-stops-container {
+/*  Route rows  */
+.route-stops-container,
+.route-stops-container-inline {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     width: 100%;
 }
 
-/* ===== Route rows ===== */
 .route-row {
     display: flex;
     align-items: center;
@@ -173,11 +173,10 @@
     transform: translateY(-2px);
 }
 
-/* ===== Drag handle ===== */
 .drag-handle {
     cursor: grab;
     font-size: 1.3rem;
-    color: #9ca3af;
+    color: #000000;
     user-select: none;
     padding: 0.5rem 0.25rem;
     transition:
@@ -199,11 +198,11 @@
     flex: 1;
 }
 
-/* ===== Route input ===== */
-.route-input {
+.route-input,
+.trip-input {
     border-radius: 8px;
     border: 1px solid #d1d5db;
-    padding: 0.75rem 1rem;
+    padding: 1rem;
     font-size: 0.95rem;
     outline: none;
     transition:
@@ -211,18 +210,47 @@
         box-shadow 0.2s ease;
 }
 
-.route-input:focus {
+.route-input:focus,
+.trip-input:focus {
     border-color: #047857;
     box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.1);
 }
 
-/* ===== Action buttons ===== */
+.trip-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.trip-title-input {
+    width: 100%;
+}
+
+.trip-dates {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.trip-date-input {
+    flex: 1;
+}
+
 .action-buttons {
     display: flex;
     gap: 0.75rem;
-    justify-content: center;
+    justify-content: space-around;
     margin-top: 1rem;
     flex-wrap: wrap;
+    opacity: 1;
+    transform: translateY(0px);
+    pointer-events: auto;
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+.action-buttons .btn {
+    width: 240px;
 }
 
 .btn {
@@ -258,7 +286,246 @@
     transform: translateY(-1px);
 }
 
-/* ===== Hidden class ===== */
-.hidden {
-    display: none !important;
+/* ===== Trip collection section ===== */
+
+.trip-collection-section {
+    text-align: center;
+    color: #ffffff;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#saved-trips-list {
+    display: flex;
+    margin-top: 2%;
+    flex-direction: row;
+    align-items: stretch;
+    width: 80vw;
+    margin-inline: auto;
+    gap: 1rem;
+    overflow-x: visible; /* horizontal scroll between cards */
+    overflow-y: hidden;
+    padding-block: 0.5rem;
+    padding-inline: 0.25rem;
+    border-radius: 20px;
+    scroll-behavior: smooth;
+}
+
+.toggle-section {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 2rem;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.toggle-btn {
+    margin-top: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(8px);
+    color: #f9fafb;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+/*  Saved trips cards  */
+.trip-card {
+    position: relative;
+    display: flex;
+    perspective: 1000px;
+    flex: 0 0 520px;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    color: #f9fafb;
+    height: 520px;
+}
+
+.trip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+}
+
+.trip-card-face {
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    backface-visibility: hidden;
+}
+
+.trip-card-face-back {
+    transform: rotateY(180deg);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.trip-card.is-editing .trip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Top toolbar with edit and delete */
+.trip-card-toolbar {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.trip-card-btn {
+    pointer-events: auto;
+    background: rgba(0, 0, 0, 0.35);
+    border: none;
+    border-radius: 999px;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0;
+    font-size: 1.1rem;
+}
+
+.trip-card-header {
+    margin-top: 0.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.trip-card-title {
+    margin: 0;
+    justify-content: center;
+    font-size: 2.1rem;
+    max-width: 80%;
+    font-weight: 600;
+}
+
+.trip-card-dates {
+    margin: 0.25rem 0 0;
+    font-size: 0.9rem;
+}
+
+.trip-card-route {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.trip-card-stop {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.2rem;
+}
+
+.trip-card-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    box-sizing: border-box;
+}
+
+.trip-card-icon-origin {
+    background: #22c55e;
+}
+
+.trip-card-icon-stop {
+    background: #eab308;
+}
+
+.trip-card-icon-destination {
+    background: #ef4444;
+}
+
+.trip-card-arrow {
+    margin-left: 0.17rem;
+    font-size: 1rem;
+}
+
+.trip-card-face-back .trip-card-edit-form {
+    height: 100%;
+}
+
+.trip-card-drag-handle {
+    cursor: grab;
+    font-size: 1.1rem;
+    color: #000000;
+    user-select: none;
+    padding: 0.5rem 0.25rem;
+    flex-shrink: 0;
+}
+
+.trip-card-drag-handle:active {
+    cursor: grabbing;
+}
+
+.trip-card-confirm {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    border-radius: inherit;
+}
+
+.trip-card.show-confirm .trip-card-confirm {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.trip-card-confirm button {
+    border: none;
+    border-radius: 999px;
+    padding: 0.55rem 1.6rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.trip-card-confirm-delete {
+    background: #dc2626;
+    color: #fef2f2;
+}
+
+.trip-card-confirm-cancel {
+    background: rgba(148, 163, 184, 0.9);
+    color: #0f172a;
 }

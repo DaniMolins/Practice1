@@ -1,4 +1,5 @@
-<section class="trips-container">
+<!-- Background carousel (like home video) -->
+<div class="trips-background">
     <div class="carousel">
         <img
             src="media/main1.webp"
@@ -16,34 +17,53 @@
             class="carousel-img"
         />
     </div>
+</div>
 
-    <div class="carousel-indicators">
-        <button
-            class="indicator active"
-            data-slide="0"
-            aria-label="Slide 1"
-        ></button>
-        <button class="indicator" data-slide="1" aria-label="Slide 2"></button>
-        <button class="indicator" data-slide="2" aria-label="Slide 3"></button>
-    </div>
+<!-- 1) Trip form section -->
+<section class="trip-form-section" id="trip-form-section">
+    <h1>Start Your Next Adventure</h1>
 
     <div class="trips-overlay">
-        <div class="overlay-header">
-            <h1>Plan traveler‑backed trips</h1>
-            <p>
-                Search your first destination and build your route stop by stop.
-            </p>
-        </div>
-
         <form id="route-form" class="route-form">
+            <!-- Trip meta -->
+            <div class="trip-meta">
+                <input
+                    type="text"
+                    id="trip-title"
+                    class="route-input trip-title-input"
+                    placeholder="Trip Title"
+                    required
+                />
+                <div class="trip-dates">
+                    <input
+                        id="trip-start-date"
+                        class="route-input trip-date-input"
+                        type="text"
+                        placeholder="Start date"
+                        onfocus="this.type = 'date'"
+                        onblur="if (!this.value) this.type = 'text';"
+                        required
+                    />
+                    <input
+                        id="trip-end-date"
+                        class="route-input trip-date-input"
+                        type="text"
+                        placeholder="End date"
+                        onfocus="this.type = 'date'"
+                        onblur="if (!this.value) this.type = 'text';"
+                        required
+                    />
+                </div>
+            </div>
+
+            <!-- Origin / stops / destination rows -->
             <div id="route-stops-container">
-                <!-- Origin row (always first) -->
                 <div
                     class="route-row route-origin-row"
                     data-type="origin"
                     draggable="true"
                 >
-                    <span class="drag-handle hidden">⠿</span>
+                    <span class="drag-handle">⠿</span>
                     <input
                         type="text"
                         id="route-origin"
@@ -53,13 +73,14 @@
                     />
                 </div>
 
-                <!-- Destination row (always last, initially hidden) -->
+                <!-- stops will be inserted here via JS -->
+
                 <div
-                    class="route-row route-destination-row hidden"
+                    class="route-row route-destination-row"
                     data-type="destination"
                     draggable="true"
                 >
-                    <span class="drag-handle hidden">⠿</span>
+                    <span class="drag-handle">⠿</span>
                     <input
                         type="text"
                         id="route-destination"
@@ -69,6 +90,30 @@
                     />
                 </div>
             </div>
+
+            <!-- Buttons: add stop + save trip -->
+            <div id="action-buttons" class="action-buttons">
+                <button type="button" class="btn add-stop-btn">
+                    + Add another stop
+                </button>
+                <button type="submit" class="btn search-btn">Save trip</button>
+            </div>
         </form>
     </div>
+</section>
+
+<!-- 2) Trip collection section -->
+<section class="trip-collection-section">
+    <h1>Your Upcoming Trips</h1>
+
+    <div id="saved-trips-list" class="home-cards-grid">
+        <!-- render saved trips here -->
+    </div>
+</section>
+
+<!-- 3) Toggle section -->
+<section class="toggle-section">
+    <button id="trips-toggle-btn" class="toggle-btn" aria-label="Show more">
+        ↓
+    </button>
 </section>
