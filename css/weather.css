@@ -147,67 +147,32 @@
 
 .weather-results-container {
     display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    width: 80vw;
-    max-width: 1200px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     margin-top: 2%;
-    margin-inline: auto;
-    gap: 1.5rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding-block: 0.5rem;
-    padding-inline: 0.25rem;
-    border-radius: 20px;
-    scroll-behavior: smooth;
 }
 
-/* weather cards */
+/* weather card */
 .weather-card {
     position: relative;
     display: flex;
     flex-direction: column;
-    flex: 0 0 340px;
-    gap: 0.75rem;
-    padding: 1.5rem;
+    align-items: center;
+    padding: 2rem;
     border-radius: 0.75rem;
     border: 1px solid rgba(255, 255, 255, 0.25);
     background: rgba(15, 23, 42, 0.4);
     backdrop-filter: blur(8px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
     color: #f9fafb;
-    min-height: 400px;
-}
-
-.weather-card-main {
-    flex: 0 0 340px;
-    min-height: 400px;
-}
-
-.weather-card-header {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-}
-
-.weather-card-city {
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: 600;
-}
-
-.weather-card-country {
-    margin: 0;
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.7);
 }
 
 .weather-card-date {
-    margin: 0.5rem 0 0;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
 }
 
 .weather-card-icon-container {
@@ -218,105 +183,27 @@
 }
 
 .weather-card-icon {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
 .weather-card-temp {
     text-align: center;
-    margin: 0.5rem 0;
 }
 
 .weather-card-temp-main {
-    font-size: 3.5rem;
+    font-size: 4rem;
     font-weight: 700;
     line-height: 1;
 }
 
-.weather-card-temp-feels {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 0.5rem;
-}
-
 .weather-card-description {
     text-align: center;
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     text-transform: capitalize;
-    margin: 0.5rem 0 1rem;
+    margin: 1rem 0 0;
     color: rgba(255, 255, 255, 0.9);
-}
-
-.weather-card-details {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-    margin-top: auto;
-}
-
-.weather-detail-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 0.75rem 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-}
-
-.weather-detail-label {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.6);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.weather-detail-value {
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-/* forecast cards */
-.weather-card-forecast {
-    flex: 0 0 200px;
-    min-height: 280px;
-    padding: 1.25rem;
-}
-
-.weather-card-forecast .weather-card-header {
-    gap: 0.15rem;
-}
-
-.weather-card-forecast .weather-card-date {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-}
-
-.weather-card-forecast .weather-card-day {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.weather-card-forecast .weather-card-icon {
-    width: 70px;
-    height: 70px;
-}
-
-.weather-card-forecast .weather-card-temp-main {
-    font-size: 2rem;
-}
-
-.weather-card-forecast .weather-card-temp-range {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 0.25rem;
-}
-
-.weather-card-forecast .weather-card-description {
-    font-size: 0.9rem;
-    margin: 0.25rem 0;
 }
 
 /* empty state */
@@ -417,19 +304,9 @@
 
 /* responsive */
 @media (max-width: 768px) {
-    .weather-results-container {
-        flex-direction: column;
+    .weather-card {
         width: 90vw;
-        overflow-x: hidden;
-        overflow-y: auto;
-        max-height: 60vh;
-    }
-
-    .weather-card,
-    .weather-card-main,
-    .weather-card-forecast {
-        flex: none;
-        width: 100%;
+        max-width: 340px;
     }
 
     .weather-input-group {
