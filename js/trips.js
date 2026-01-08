@@ -225,14 +225,22 @@ function initTrips() {
 
       const trips = loadTrips();
 
+      container.innerHTML = "";
+
+      if (!trips.length) {
+        const emptyMessage = document.createElement("p");
+        emptyMessage.className = "empty-trips-message";
+        emptyMessage.textContent = "You haven't saved any trips yet :)";
+        container.appendChild(emptyMessage);
+        return;
+      }
+
       // order trips by start date
       trips.sort((a, b) => {
         const da = new Date(a.startDate || 0).getTime();
         const db = new Date(b.startDate || 0).getTime();
         return da - db;
       });
-
-      container.innerHTML = "";
 
       trips.forEach((trip) => {
         const card = document.createElement("article");
