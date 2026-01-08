@@ -1,0 +1,55 @@
+<!-- Background image -->
+<div class="weather-background">
+    <img
+        src="media/main1.webp"
+        alt="Weather background"
+        class="weather-bg-img"
+    />
+</div>
+
+<!-- 1) Weather search section -->
+<section class="weather-search-section" id="weather-search-section">
+    <h1>Weather check</h1>
+
+    <div class="weather-overlay">
+        <form id="weather-form" class="weather-form">
+            <p class="weather-subtitle">
+                Check the weather at your destination before you travel
+            </p>
+            <div class="weather-input-group">
+                <input
+                    type="text"
+                    id="weather-location"
+                    class="route-input weather-location-input"
+                    placeholder="Enter a city name (e.g., Barcelona, Paris)"
+                    required
+                />
+                <button type="submit" class="btn search-btn weather-search-btn">
+                    Check Weather
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- 2) Weather results section -->
+<section class="weather-results-section" id="weather-results-section">
+    <h1>Current Weather</h1>
+
+    <div id="weather-results-container" class="weather-results-container">
+        <div class="weather-empty-state" id="weather-empty-state">
+            <p class="weather-empty-text">
+                Search a city to see its current weather
+            </p>
+        </div>
+    </div>
+
+</section>
+
+<!-- 3) Toggle section -->
+<section class="toggle-section">
+    <button id="weather-toggle-btn" class="toggle-btn" aria-label="Show more">
+        ↓
+    </button>
+</section>
+
