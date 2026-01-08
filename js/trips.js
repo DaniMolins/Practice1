@@ -263,6 +263,12 @@ function initTrips() {
         editBtn.setAttribute("aria-label", "Edit trip");
         editBtn.textContent = "✏️";
 
+        const activityBtn = document.createElement("button");
+        activityBtn.className = "trip-card-btn trip-card-btn-activity";
+        activityBtn.type = "button";
+        activityBtn.setAttribute("aria-label", "Activity");
+        activityBtn.textContent = "🕺";
+
         const deleteBtn = document.createElement("button");
         deleteBtn.className = "trip-card-btn trip-card-btn-delete";
         deleteBtn.type = "button";
@@ -270,6 +276,7 @@ function initTrips() {
         deleteBtn.textContent = "🗑️";
 
         toolbar.appendChild(editBtn);
+        toolbar.appendChild(activityBtn);
         toolbar.appendChild(deleteBtn);
         front.appendChild(toolbar);
 
@@ -405,6 +412,20 @@ function initTrips() {
             </div>
           </form>
         `;
+
+        // ===== ACTIVITIES FACE =====
+        const activitiesCard = document.createElement("div");
+        activitiesCard.className = "trip-card-face trip-card-face-activities";
+        activitiesCard.innerHTML = `
+          <div class="activities-card-header">
+            <h3 class="trip-card-title">Activities for ${trip.tripTitle || "Untitled trip"}</h3>
+          </div>
+          <div class="activities-card-content">
+            <p>Activities content goes here</p>
+          </div>
+        `;
+
+        inner.appendChild(activitiesCard);
 
         inner.appendChild(front);
         inner.appendChild(back);
