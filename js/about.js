@@ -37,14 +37,18 @@ function initAbout() {
       else showContact();
     });
 
-    window.addEventListener(
-      "wheel",
-      (e) => {
-        if (e.deltaY > 20 && !showingContact) showContact();
-        else if (e.deltaY < -20 && showingContact) showAbout();
-      },
-      { passive: true },
-    );
+    window.addEventListener("wheel", (e) => {
+      if (e.deltaY > 20 && !showingContact) showContact();
+      else if (e.deltaY < -20 && showingContact) showAbout();
+    }, { passive: true });
+
+    let touchY = 0;
+    window.addEventListener("touchstart", (e) => { touchY = e.touches[0].clientY; }, { passive: true });
+    window.addEventListener("touchend", (e) => {
+      const d = touchY - e.changedTouches[0].clientY;
+      if (d > 50 && !showingContact) showContact();
+      else if (d < -50 && showingContact) showAbout();
+    }, { passive: true });
   }
 
   // Contact form handling

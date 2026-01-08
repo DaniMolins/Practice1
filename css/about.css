@@ -29,10 +29,9 @@
     align-items: center;
     justify-content: flex-start;
     gap: 2rem;
-    padding-top: 9rem;
+    padding-top: 15rem;
     padding-inline: 1.5rem;
     padding-bottom: 5rem;
-    overflow-y: auto;
     transition:
         transform 0.6s ease,
         opacity 0.6s ease;

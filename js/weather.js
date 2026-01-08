@@ -130,14 +130,18 @@ function initWeather() {
     });
   }
 
-  window.addEventListener(
-    "wheel",
-    (e) => {
-      if (e.deltaY > 20 && !showingResults) showResults();
-      else if (e.deltaY < -20 && showingResults) showSearch();
-    },
-    { passive: true },
-  );
+  window.addEventListener("wheel", (e) => {
+    if (e.deltaY > 20 && !showingResults) showResults();
+    else if (e.deltaY < -20 && showingResults) showSearch();
+  }, { passive: true });
+
+  let touchY = 0;
+  window.addEventListener("touchstart", (e) => { touchY = e.touches[0].clientY; }, { passive: true });
+  window.addEventListener("touchend", (e) => {
+    const d = touchY - e.changedTouches[0].clientY;
+    if (d > 50 && !showingResults) showResults();
+    else if (d < -50 && showingResults) showSearch();
+  }, { passive: true });
 
   /* form handling */
 
