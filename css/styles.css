@@ -1,5 +1,6 @@
 :root {
     --header-height: 70px;
+    --header-top: 1.5rem;
     --gold: 210, 163, 100; /* #d2a364 */
     --gold-transparent: rgba(210, 163, 100, 0.7);
 }
@@ -237,9 +238,13 @@ body.scrolled .site-header {
 }
 
 @media (max-width: 1324px) and (min-width: 768px) {
+    :root {
+        --header-top: 3rem;
+    }
+
     .site-header {
         position: fixed;
-        top: 3rem; /* keep same offset */
+        top: var(--header-top); /* keep same offset */
     }
 
     .navbar {
@@ -274,9 +279,13 @@ body.scrolled .site-header {
 }
 
 @media (max-width: 768px) {
+    :root {
+        --header-top: 4.6rem;
+    }
+
     .site-header {
         position: fixed;
-        top: 4.6rem; /* keep same offset */
+        top: var(--header-top); /* keep same offset */
     }
 
     .navbar {
