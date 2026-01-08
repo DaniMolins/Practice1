@@ -533,3 +533,106 @@
     background: rgba(148, 163, 184, 0.9);
     color: #0f172a;
 }
+
+/* activities */
+.activity-description-input {
+    resize: vertical;
+    min-height: 60px;
+    font-family: inherit;
+}
+
+.activities-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.activity-item {
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    border-left: 3px solid #047857;
+    position: relative;
+}
+
+.activity-content {
+    padding-right: 80px;
+}
+
+.activity-item h4 {
+    margin: 0 0 0.2rem;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.activity-item p {
+    margin: 0 0 0.5rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.activity-item span {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.activity-actions {
+    display: flex;
+    gap: 0.5rem;
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+}
+
+.activity-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*Activities */
+
+.trip-card-face-activities {
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    backface-visibility: hidden;
+    display: none;
+}
+
+.trip-card.show-activities .trip-card-inner {
+    transform: none;
+}
+
+.trip-card.show-activities .trip-card-face {
+    display: none;
+}
+
+.trip-card.show-activities .trip-card-face-activities {
+    display: block;
+}
+
+.activities-card-header {
+    padding-top: 3.5rem;
+    text-align: right;
+}
+
+.activities-card-content {
+    margin-top: 1rem;
+    padding: 1rem;
+    align-items: right;
+}

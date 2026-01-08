@@ -214,6 +214,7 @@ function initTrips() {
         origin,
         stops,
         destination,
+        activities: [],
       };
     }
 
@@ -234,6 +235,14 @@ function initTrips() {
         container.appendChild(emptyMessage);
         return;
       }
+
+      // Initialize activities array for old trips
+      trips.forEach((trip) => {
+        if (!trip.activities) {
+          trip.activities = [];
+        }
+      });
+      saveTrips(trips);
 
       // order trips by start date
       trips.sort((a, b) => {
@@ -417,18 +426,122 @@ function initTrips() {
         const activitiesCard = document.createElement("div");
         activitiesCard.className = "trip-card-face trip-card-face-activities";
         activitiesCard.innerHTML = `
+          <div class="trip-card-toolbar activities-card-toolbar">
+            <button class="trip-card-btn activity-back-btn" type="button" aria-label="Back to trip">←</button>
+            <button class="trip-card-btn activity-add-btn" type="button" aria-label="Add activity">+</button>
+          </div>
           <div class="activities-card-header">
             <h3 class="trip-card-title">Activities for ${trip.tripTitle || "Untitled trip"}</h3>
           </div>
           <div class="activities-card-content">
-            <p>Activities content goes here</p>
+            <form class="route-form activity-form" style="display: none;">
+              <input
+                type="text"
+                class="route-input activity-title-input"
+                placeholder="Activity Title"
+                required
+              />
+              <textarea
+                class="route-input activity-description-input"
+                placeholder="Description"
+                rows="3"
+              ></textarea>
+              <input
+                type="date"
+                class="route-input activity-day-input"
+                required
+              />
+              <button type="submit" class="btn search-btn">Add Activity</button>
+            </form>
+            <div class="activities-list">
+              <p>No activities yet. Click + to add one!</p>
+            </div>
           </div>
         `;
 
-        inner.appendChild(activitiesCard);
+        const activityBackBtn = activitiesCard.querySelector(".activity-back-btn");
+        const activityAddBtn = activitiesCard.querySelector(".activity-add-btn");
+        const activityForm = activitiesCard.querySelector(".activity-form");
+        const activitiesList = activitiesCard.querySelector(".activities-list");
+
+        // Initialize activities array if not exists
+        if (!trip.activities) {
+          trip.activities = [];
+        }
+
+        // Track which activity is being edited
+        let editingActivityId = null;
+
+        // Render existing activities
+        function renderActivities() {
+          if (trip.activities.length === 0) {
+            activitiesList.innerHTML = "<p>No activities yet. Click + to add one!</p>";
+          } else {
+            activitiesList.innerHTML = "";
+            trip.activities.forEach((activity) => {
+              const activityItem = document.createElement("div");
+              activityItem.className = "activity-item";
+              activityItem.innerHTML = `
+                <div class="activity-content">
+                  <h4>${activity.title}</h4>
+                  <p>${activity.description || "No description"}</p>
+                  <span>${new Date(activity.day).toLocaleDateString("en-GB")}</span>
+                </div>
+                <div class="activity-actions">
+                  <button class="activity-btn activity-edit-btn" data-id="${activity.id}" type="button" aria-label="Edit activity">✏️</button>
+                  <button class="activity-btn activity-delete-btn" data-id="${activity.id}" type="button" aria-label="Delete activity">🗑️</button>
+                </div>
+              `;
+              activitiesList.appendChild(activityItem);
+            });
+
+            // Add event listeners to all edit and delete buttons
+            activitiesList.querySelectorAll(".activity-edit-btn").forEach((btn) => {
+              btn.addEventListener("click", () => {
+                const activityId = parseInt(btn.dataset.id);
+                const activity = trip.activities.find((a) => a.id === activityId);
+                if (activity) {
+                  editingActivityId = activityId;
+                  const titleInput = activityForm.querySelector(".activity-title-input");
+                  const descInput = activityForm.querySelector(".activity-description-input");
+                  const dayInput = activityForm.querySelector(".activity-day-input");
+                  const submitBtn = activityForm.querySelector(".btn");
+
+                  titleInput.value = activity.title;
+                  descInput.value = activity.description || "";
+                  dayInput.value = activity.day;
+                  submitBtn.textContent = "Change Activity";
+
+                  activityForm.style.display = "block";
+                  activitiesList.style.display = "none";
+                }
+              });
+            });
+
+            activitiesList.querySelectorAll(".activity-delete-btn").forEach((btn) => {
+              btn.addEventListener("click", () => {
+                const activityId = parseInt(btn.dataset.id);
+                trip.activities = trip.activities.filter((a) => a.id !== activityId);
+                
+                // Save to localStorage
+                const trips = loadTrips();
+                const idx = trips.findIndex((t) => t.id === trip.id);
+                if (idx !== -1) {
+                  trips[idx] = trip;
+                  saveTrips(trips);
+                }
+                
+                renderActivities();
+              });
+            });
+          }
+        }
+
+        renderActivities();
 
         inner.appendChild(front);
         inner.appendChild(back);
+        inner.appendChild(activitiesCard);
         card.appendChild(inner);
 
         const confirm = document.createElement("div");
@@ -450,11 +563,92 @@ function initTrips() {
 
         // ===== EVENTS =====
 
+         activityBtn.addEventListener("click", () => {
+          const showing = card.classList.toggle("show-activities");
+          if (showing) card.classList.remove("is-editing");
+        });
+
+        activityBackBtn?.addEventListener("click", () => {
+          card.classList.remove("show-activities");
+        });
+
+        activityAddBtn?.addEventListener("click", () => {
+          if (activityForm) {
+            const isVisible = activityForm.style.display !== "none";
+            if (isVisible) {
+              // Closing form
+              activityForm.style.display = "none";
+              activitiesList.style.display = "block";
+              editingActivityId = null;
+              activityForm.reset();
+              activityForm.querySelector(".btn").textContent = "Add Activity";
+            } else {
+              // Opening form for new activity
+              editingActivityId = null;
+              activityForm.reset();
+              activityForm.querySelector(".btn").textContent = "Add Activity";
+              activityForm.style.display = "block";
+              activitiesList.style.display = "none";
+            }
+          }
+        });
+
+        activityForm?.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const titleInput = activityForm.querySelector(".activity-title-input");
+          const descInput = activityForm.querySelector(".activity-description-input");
+          const dayInput = activityForm.querySelector(".activity-day-input");
+          
+          const title = titleInput?.value?.trim();
+          const description = descInput?.value?.trim();
+          const day = dayInput?.value;
+
+          if (title && day) {
+            if (editingActivityId) {
+              // Edit existing activity - remove old one and add new one
+              trip.activities = trip.activities.filter((a) => a.id !== editingActivityId);
+              const updatedActivity = {
+                id: Date.now(),
+                title,
+                description,
+                day,
+              };
+              trip.activities.push(updatedActivity);
+              editingActivityId = null;
+            } else {
+              // Add new activity
+              const newActivity = {
+                id: Date.now(),
+                title,
+                description,
+                day,
+              };
+              trip.activities.push(newActivity);
+            }
+            
+            // Save to localStorage
+            const trips = loadTrips();
+            const idx = trips.findIndex((t) => t.id === trip.id);
+            if (idx !== -1) {
+              trips[idx] = trip;
+              saveTrips(trips);
+            }
+            
+            // Re-render activities list
+            renderActivities();
+            
+            // Reset form
+            activityForm.reset();
+            activityForm.style.display = "none";
+            activitiesList.style.display = "block";
+            activityForm.querySelector(".btn").textContent = "Add Activity";
+          }
+        });
+
         editBtn.addEventListener("click", () => {
+          card.classList.remove("show-activities");
           card.classList.add("is-editing");
-          const editContainer = back.querySelector(
-            ".route-stops-container-inline",
-          );
+          const editContainer = back.querySelector(".route-stops-container-inline");
           setupRouteDrag(editContainer);
         });
 
@@ -471,6 +665,8 @@ function initTrips() {
           saveTrips(arr);
           renderTrips();
         });
+
+        
 
         const editForm = back.querySelector(".trip-card-edit-form");
         const stopsInline = editForm.querySelector(
