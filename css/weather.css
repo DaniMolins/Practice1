@@ -1,4 +1,4 @@
-/* ===== Weather background ===== */
+/* weather background */
 .weather-background {
     position: relative;
     width: 100%;
@@ -17,7 +17,7 @@
     object-fit: cover;
 }
 
-/* ===== Overlay sections ===== */
+/* overlay sections */
 .weather-search-section,
 .weather-results-section {
     position: fixed;
@@ -51,7 +51,7 @@
     opacity: 0;
 }
 
-/* Results hidden by default */
+/* results hidden by default */
 .weather-results-section {
     transform: translateY(100%);
     opacity: 0;
@@ -62,7 +62,7 @@
     opacity: 1;
 }
 
-/* ===== Weather overlay card ===== */
+/* weather overlay card */
 .weather-overlay {
     width: 100%;
     max-width: 720px;
@@ -75,7 +75,7 @@
     position: relative;
 }
 
-/* ===== Weather form ===== */
+/* weather form */
 .weather-form {
     border-radius: 12px;
     padding: 1.8rem;
@@ -137,7 +137,7 @@
     transform: translateY(-1px);
 }
 
-/* ===== Weather results section ===== */
+/* weather results section */
 .weather-results-section {
     text-align: center;
     color: #ffffff;
@@ -162,7 +162,7 @@
     scroll-behavior: smooth;
 }
 
-/* ===== Weather cards ===== */
+/* weather cards */
 .weather-card {
     position: relative;
     display: flex;
@@ -180,8 +180,8 @@
 }
 
 .weather-card-main {
-    flex: 0 0 400px;
-    min-height: 450px;
+    flex: 0 0 340px;
+    min-height: 400px;
 }
 
 .weather-card-header {
@@ -277,7 +277,7 @@
     font-weight: 600;
 }
 
-/* ===== Forecast cards ===== */
+/* forecast cards */
 .weather-card-forecast {
     flex: 0 0 200px;
     min-height: 280px;
@@ -319,7 +319,25 @@
     margin: 0.25rem 0;
 }
 
-/* ===== Error state ===== */
+/* empty state */
+.weather-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 3rem 2rem;
+    color: #f9fafb;
+}
+
+.weather-empty-text {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    margin: 0;
+}
+
+/* error state */
 .weather-error {
     text-align: center;
     padding: 2rem;
@@ -343,7 +361,7 @@
     margin: 0;
 }
 
-/* ===== Loading state ===== */
+/* loading state */
 .weather-loading {
     text-align: center;
     padding: 3rem;
@@ -370,7 +388,7 @@
     font-size: 1.1rem;
 }
 
-/* ===== Toggle section ===== */
+/* toggle section */
 .toggle-section {
     position: absolute;
     inset-inline: 0;
@@ -397,7 +415,7 @@
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
-/* ===== Responsive ===== */
+/* responsive */
 @media (max-width: 768px) {
     .weather-results-container {
         flex-direction: column;

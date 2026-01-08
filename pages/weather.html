@@ -9,7 +9,7 @@
 
 <!-- 1) Weather search section -->
 <section class="weather-search-section" id="weather-search-section">
-    <h1>Weather Awareness</h1>
+    <h1>Weather check</h1>
 
     <div class="weather-overlay">
         <form id="weather-form" class="weather-form">
@@ -34,10 +34,14 @@
 
 <!-- 2) Weather results section -->
 <section class="weather-results-section" id="weather-results-section">
-    <h1>Weather Forecast</h1>
+    <h1> Forecast</h1>
 
     <div id="weather-results-container" class="weather-results-container">
-        <!-- Weather cards will be rendered here -->
+        <div class="weather-empty-state" id="weather-empty-state">
+            <p class="weather-empty-text">
+                Search a city to see its weather forecast
+            </p>
+        </div>
     </div>
 
 </section>

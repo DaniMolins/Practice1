@@ -2,7 +2,7 @@ function initWeather() {
   const API_KEY = "e5c7883f8b213eec83b18b1f3d0b3f2e";
   const BASE_URL = "https://api.openweathermap.org/data/2.5";
 
-  // -------- API helpers --------
+  /* API helpers */
 
   async function fetchCurrentWeather(city) {
     const url = `${BASE_URL}/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`;
@@ -24,7 +24,7 @@ function initWeather() {
     return res.json();
   }
 
-  // -------- date/time helpers --------
+  /* date/time helpers */
 
   function formatDate(timestamp) {
     const date = new Date(timestamp * 1000);
@@ -56,7 +56,7 @@ function initWeather() {
     });
   }
 
-  // -------- render helpers --------
+  /* render helpers */
 
   function getWeatherIconUrl(iconCode) {
     return `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
@@ -164,7 +164,7 @@ function initWeather() {
     `;
   }
 
-  // -------- main weather logic --------
+  /* main weather logic */
 
   async function searchWeather(city) {
     const container = document.getElementById("weather-results-container");
@@ -232,7 +232,7 @@ function initWeather() {
     return Array.from(dailyMap.values()).slice(0, 4);
   }
 
-  // -------- section toggle --------
+  /* section toggle */
 
   const searchSection = document.querySelector(".weather-search-section");
   const resultsSection = document.querySelector(".weather-results-section");
@@ -275,7 +275,7 @@ function initWeather() {
     { passive: true },
   );
 
-  // -------- form handling --------
+  /* form handling */
 
   const weatherForm = document.getElementById("weather-form");
   const locationInput = document.getElementById("weather-location");
