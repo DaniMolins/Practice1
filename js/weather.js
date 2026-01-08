@@ -1,5 +1,5 @@
 function initWeather() {
-  const API_KEY = "e5c7883f8b213eec83b18b1f3d0b3f2e";
+  const API_KEY = "e5c7883f8b213eec83b18b1f3d0b3f2e"; // borrar abans de submitejar
   const BASE_URL = "https://api.openweathermap.org/data/2.5";
 
   /* API functions */
@@ -47,7 +47,7 @@ function initWeather() {
       </div>
 
       <div class="weather-card-temp">
-        <div class="weather-card-temp-main">${Math.round(data.main.temp)}°C</div>
+        <div class="weather-card-temp-main">${data.main.temp}°C</div>
       </div>
 
       <p class="weather-card-description">${data.weather[0].description}</p>
@@ -148,9 +148,7 @@ function initWeather() {
     weatherForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const city = locationInput?.value?.trim();
-      if (city) {
-        searchWeather(city);
-      }
+      searchWeather(city);
     });
   }
 
