@@ -10,10 +10,8 @@ async function loadPage(page) {
     root.innerHTML = html;
     titleEl.textContent = `TripPlanner+ · ${capitalize(page)}`;
 
-    // Load page-specific CSS
     pageStylesLink.href = `css/${page}.css`;
 
-    // Initialize page-specific JS
     initPageScripts(page);
   } catch (err) {
     root.innerHTML = "<p>Page not found.</p>";
