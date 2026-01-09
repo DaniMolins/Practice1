@@ -32,20 +32,15 @@
 /* Overlay sections */
 .trip-form-section,
 .trip-collection-section {
-    position: fixed;
-    inset: 0;
+    position: relative;
     z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     gap: 0.5rem;
-    padding-top: calc(var(--header-height) + var(--header-top) * 2.5);
     padding-inline: 1.5rem;
     padding-bottom: 5rem;
-    transition:
-        transform 0.6s ease,
-        opacity 0.6s ease;
 }
 
 .trip-form-section h1,
@@ -58,21 +53,7 @@
     line-height: 1.2;
 }
 
-.trip-form-section.slide-up {
-    transform: translateY(-100%);
-    opacity: 0;
-}
-
-/* collection hidden by default */
-.trip-collection-section {
-    transform: translateY(100%);
-    opacity: 0;
-}
-
-.trip-collection-section.active {
-    transform: translateY(0);
-    opacity: 1;
-}
+/* All sections visible and in normal flow */
 
 /*  Trip overlay card  */
 
@@ -118,9 +99,6 @@
     flex-direction: column;
     gap: 1rem;
     width: 100%;
-    max-height: 50vh;
-    overflow-y: auto;
-    overflow-x: hidden;
 }
 
 .route-form::-webkit-scrollbar {
@@ -313,30 +291,9 @@
     scroll-behavior: smooth;
 }
 
+/* Toggle section - hidden for normal scrolling */
 .toggle-section {
-    position: absolute;
-    inset-inline: 0;
-    bottom: 2rem;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-}
-
-.toggle-btn {
-    margin-top: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    background: rgba(15, 23, 42, 0.4);
-    backdrop-filter: blur(8px);
-    color: #f9fafb;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    cursor: pointer;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    display: none;
 }
 
 /*  Saved trips cards  */

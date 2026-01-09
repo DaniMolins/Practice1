@@ -550,49 +550,7 @@ function initTrips() {
     });
   }
 
-  // -------- section toggle --------
-
-  const formSection = document.querySelector(".trip-form-section");
-  const collectionSection = document.querySelector(".trip-collection-section");
-  const toggleBtn = document.getElementById("trips-toggle-btn");
-
-  if (formSection && collectionSection && toggleBtn) {
-    let showingCollection = false;
-
-    function showCollection() {
-      showingCollection = true;
-      formSection.classList.add("slide-up");
-      collectionSection.classList.add("active");
-      toggleBtn.textContent = "↑";
-      toggleBtn.setAttribute("aria-label", "Show form");
-    }
-
-    function showForm() {
-      showingCollection = false;
-      formSection.classList.remove("slide-up");
-      collectionSection.classList.remove("active");
-      toggleBtn.textContent = "↓";
-      toggleBtn.setAttribute("aria-label", "Show saved trips");
-    }
-
-    toggleBtn.addEventListener("click", () => {
-      if (showingCollection) showForm();
-      else showCollection();
-    });
-
-    window.addEventListener("wheel", (e) => {
-      if (e.deltaY > 20 && !showingCollection) showCollection();
-      else if (e.deltaY < -20 && showingCollection) showForm();
-    }, { passive: true });
-
-    let touchY = 0;
-    window.addEventListener("touchstart", (e) => { touchY = e.touches[0].clientY; }, { passive: true });
-    window.addEventListener("touchend", (e) => {
-      const d = touchY - e.changedTouches[0].clientY;
-      if (d > 50 && !showingCollection) showCollection();
-      else if (d < -50 && showingCollection) showForm();
-    }, { passive: true });
-  }
+  // Section toggle removed - now using normal scrolling
 
   initCarousel();
   initRouteForm();

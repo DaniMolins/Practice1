@@ -8,48 +8,7 @@ function initAbout() {
   // EmailJS API endpoint
   const EMAILJS_API_URL = "https://api.emailjs.com/api/v1.0/email/send";
 
-  // Section toggle functionality
-  const aboutSection = document.getElementById("about-main");
-  const contactSection = document.getElementById("contact-section");
-  const toggleBtn = document.getElementById("about-toggle-btn");
-
-  if (aboutSection && contactSection && toggleBtn) {
-    let showingContact = false;
-
-    function showContact() {
-      showingContact = true;
-      aboutSection.classList.add("slide-up");
-      contactSection.classList.add("active");
-      toggleBtn.textContent = "↑";
-      toggleBtn.setAttribute("aria-label", "Show about");
-    }
-
-    function showAbout() {
-      showingContact = false;
-      aboutSection.classList.remove("slide-up");
-      contactSection.classList.remove("active");
-      toggleBtn.textContent = "↓";
-      toggleBtn.setAttribute("aria-label", "Show contact");
-    }
-
-    toggleBtn.addEventListener("click", () => {
-      if (showingContact) showAbout();
-      else showContact();
-    });
-
-    window.addEventListener("wheel", (e) => {
-      if (e.deltaY > 20 && !showingContact) showContact();
-      else if (e.deltaY < -20 && showingContact) showAbout();
-    }, { passive: true });
-
-    let touchY = 0;
-    window.addEventListener("touchstart", (e) => { touchY = e.touches[0].clientY; }, { passive: true });
-    window.addEventListener("touchend", (e) => {
-      const d = touchY - e.changedTouches[0].clientY;
-      if (d > 50 && !showingContact) showContact();
-      else if (d < -50 && showingContact) showAbout();
-    }, { passive: true });
-  }
+  // Section toggle removed - now using normal scrolling
 
   // Contact form handling
   const contactForm = document.getElementById("contact-form");
