@@ -97,47 +97,7 @@ function initWeather() {
     }
   }
 
-  /* section toggle */
-
-  const searchSection = document.querySelector(".weather-search-section");
-  const resultsSection = document.querySelector(".weather-results-section");
-  const toggleBtn = document.getElementById("weather-toggle-btn");
-
-  let showingResults = false;
-
-  function showResults() {
-    if (!searchSection || !resultsSection || !toggleBtn) return;
-    showingResults = true;
-    searchSection.classList.add("slide-up");
-    resultsSection.classList.add("active");
-    toggleBtn.textContent = "↑";
-    toggleBtn.setAttribute("aria-label", "Show search");
-  }
-
-  function showSearch() {
-    if (!searchSection || !resultsSection || !toggleBtn) return;
-    showingResults = false;
-    searchSection.classList.remove("slide-up");
-    resultsSection.classList.remove("active");
-    toggleBtn.textContent = "↓";
-    toggleBtn.setAttribute("aria-label", "Show results");
-  }
-
-  if (toggleBtn) {
-    toggleBtn.addEventListener("click", () => {
-      if (showingResults) showSearch();
-      else showResults();
-    });
-  }
-
-  window.addEventListener(
-    "wheel",
-    (e) => {
-      if (e.deltaY > 20 && !showingResults) showResults();
-      else if (e.deltaY < -20 && showingResults) showSearch();
-    },
-    { passive: true },
-  );
+  /* Section toggle removed - now using normal scrolling */
 
   /* form handling */
 
