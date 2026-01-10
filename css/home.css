@@ -33,7 +33,7 @@ body.page-home {
 .home-container {
     width: 100%;
     max-width: 720px;
-    padding: 2rem 1.5rem 3.5rem;
+    padding: 3.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -129,7 +129,7 @@ body.page-home {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: top;
     gap: 2rem;
 }
 
