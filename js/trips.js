@@ -1,24 +1,4 @@
 function initTrips() {
-  let currentSlide = 0;
-  let carouselInterval;
-
-  function initCarousel() {
-    const slides = document.querySelectorAll(".carousel-img");
-    if (!slides.length) return;
-
-    function showSlide(n) {
-      slides.forEach((slide) => slide.classList.remove("active"));
-      slides[n].classList.add("active");
-      currentSlide = n;
-    }
-
-    if (carouselInterval) clearInterval(carouselInterval);
-    carouselInterval = setInterval(() => {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }, 5000);
-  }
-
   // -------- generic helpers --------
 
   function loadTrips() {
@@ -452,8 +432,10 @@ function initTrips() {
           </div>
         `;
 
-        const activityBackBtn = activitiesCard.querySelector(".activity-back-btn");
-        const activityAddBtn = activitiesCard.querySelector(".activity-add-btn");
+        const activityBackBtn =
+          activitiesCard.querySelector(".activity-back-btn");
+        const activityAddBtn =
+          activitiesCard.querySelector(".activity-add-btn");
         const activityForm = activitiesCard.querySelector(".activity-form");
         const activitiesList = activitiesCard.querySelector(".activities-list");
 
@@ -468,7 +450,8 @@ function initTrips() {
         // Render existing activities
         function renderActivities() {
           if (trip.activities.length === 0) {
-            activitiesList.innerHTML = "<p>No activities yet. Click + to add one!</p>";
+            activitiesList.innerHTML =
+              "<p>No activities yet. Click + to add one!</p>";
           } else {
             activitiesList.innerHTML = "";
             trip.activities.forEach((activity) => {
@@ -489,44 +472,58 @@ function initTrips() {
             });
 
             // Add event listeners to all edit and delete buttons
-            activitiesList.querySelectorAll(".activity-edit-btn").forEach((btn) => {
-              btn.addEventListener("click", () => {
-                const activityId = parseInt(btn.dataset.id);
-                const activity = trip.activities.find((a) => a.id === activityId);
-                if (activity) {
-                  editingActivityId = activityId;
-                  const titleInput = activityForm.querySelector(".activity-title-input");
-                  const descInput = activityForm.querySelector(".activity-description-input");
-                  const dayInput = activityForm.querySelector(".activity-day-input");
-                  const submitBtn = activityForm.querySelector(".btn");
+            activitiesList
+              .querySelectorAll(".activity-edit-btn")
+              .forEach((btn) => {
+                btn.addEventListener("click", () => {
+                  const activityId = parseInt(btn.dataset.id);
+                  const activity = trip.activities.find(
+                    (a) => a.id === activityId,
+                  );
+                  if (activity) {
+                    editingActivityId = activityId;
+                    const titleInput = activityForm.querySelector(
+                      ".activity-title-input",
+                    );
+                    const descInput = activityForm.querySelector(
+                      ".activity-description-input",
+                    );
+                    const dayInput = activityForm.querySelector(
+                      ".activity-day-input",
+                    );
+                    const submitBtn = activityForm.querySelector(".btn");
 
-                  titleInput.value = activity.title;
-                  descInput.value = activity.description || "";
-                  dayInput.value = activity.day;
-                  submitBtn.textContent = "Change Activity";
+                    titleInput.value = activity.title;
+                    descInput.value = activity.description || "";
+                    dayInput.value = activity.day;
+                    submitBtn.textContent = "Change Activity";
 
-                  activityForm.style.display = "block";
-                  activitiesList.style.display = "none";
-                }
+                    activityForm.style.display = "block";
+                    activitiesList.style.display = "none";
+                  }
+                });
               });
-            });
 
-            activitiesList.querySelectorAll(".activity-delete-btn").forEach((btn) => {
-              btn.addEventListener("click", () => {
-                const activityId = parseInt(btn.dataset.id);
-                trip.activities = trip.activities.filter((a) => a.id !== activityId);
-                
-                // Save to localStorage
-                const trips = loadTrips();
-                const idx = trips.findIndex((t) => t.id === trip.id);
-                if (idx !== -1) {
-                  trips[idx] = trip;
-                  saveTrips(trips);
-                }
-                
-                renderActivities();
+            activitiesList
+              .querySelectorAll(".activity-delete-btn")
+              .forEach((btn) => {
+                btn.addEventListener("click", () => {
+                  const activityId = parseInt(btn.dataset.id);
+                  trip.activities = trip.activities.filter(
+                    (a) => a.id !== activityId,
+                  );
+
+                  // Save to localStorage
+                  const trips = loadTrips();
+                  const idx = trips.findIndex((t) => t.id === trip.id);
+                  if (idx !== -1) {
+                    trips[idx] = trip;
+                    saveTrips(trips);
+                  }
+
+                  renderActivities();
+                });
               });
-            });
           }
         }
 
@@ -556,7 +553,7 @@ function initTrips() {
 
         // ===== EVENTS =====
 
-         activityBtn.addEventListener("click", () => {
+        activityBtn.addEventListener("click", () => {
           const showing = card.classList.toggle("show-activities");
           if (showing) card.classList.remove("is-editing");
         });
@@ -588,10 +585,14 @@ function initTrips() {
 
         activityForm?.addEventListener("submit", (e) => {
           e.preventDefault();
-          const titleInput = activityForm.querySelector(".activity-title-input");
-          const descInput = activityForm.querySelector(".activity-description-input");
+          const titleInput = activityForm.querySelector(
+            ".activity-title-input",
+          );
+          const descInput = activityForm.querySelector(
+            ".activity-description-input",
+          );
           const dayInput = activityForm.querySelector(".activity-day-input");
-          
+
           const title = titleInput?.value?.trim();
           const description = descInput?.value?.trim();
           const day = dayInput?.value;
@@ -599,7 +600,9 @@ function initTrips() {
           if (title && day) {
             if (editingActivityId) {
               // Edit existing activity - remove old one and add new one
-              trip.activities = trip.activities.filter((a) => a.id !== editingActivityId);
+              trip.activities = trip.activities.filter(
+                (a) => a.id !== editingActivityId,
+              );
               const updatedActivity = {
                 id: Date.now(),
                 title,
@@ -618,7 +621,7 @@ function initTrips() {
               };
               trip.activities.push(newActivity);
             }
-            
+
             // Save to localStorage
             const trips = loadTrips();
             const idx = trips.findIndex((t) => t.id === trip.id);
@@ -626,10 +629,10 @@ function initTrips() {
               trips[idx] = trip;
               saveTrips(trips);
             }
-            
+
             // Re-render activities list
             renderActivities();
-            
+
             // Reset form
             activityForm.reset();
             activityForm.style.display = "none";
@@ -641,7 +644,9 @@ function initTrips() {
         editBtn.addEventListener("click", () => {
           card.classList.remove("show-activities");
           card.classList.add("is-editing");
-          const editContainer = back.querySelector(".route-stops-container-inline");
+          const editContainer = back.querySelector(
+            ".route-stops-container-inline",
+          );
           setupRouteDrag(editContainer);
         });
 
@@ -658,8 +663,6 @@ function initTrips() {
           saveTrips(arr);
           renderTrips();
         });
-
-        
 
         const editForm = back.querySelector(".trip-card-edit-form");
         const stopsInline = editForm.querySelector(
@@ -760,7 +763,6 @@ function initTrips() {
     });
   }
 
-  initCarousel();
   initRouteForm();
 
   // Load destination from home page (must be after form reset)

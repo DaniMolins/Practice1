@@ -128,7 +128,12 @@ body.page-home {
 }
 
 .home-main {
-    min-height: 100vh;
+    margin-top: 10vh;
+    min-height: 80vh;
+}
+
+.home-section {
+    margin-bottom: 20vh;
 }
 
 .home-cards-grid {
