@@ -62,18 +62,20 @@ body.page-home {
 .route-form {
     width: 100%;
     max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .input-wrapper {
     position: relative;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    width: 100%;
     background: rgba(255, 255, 255, 0.95);
     border-radius: 999px;
-    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    padding: 0.75rem 1.5rem;
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
-    transition: padding 0.3s ease;
 }
 
 .route-input {
@@ -91,35 +93,27 @@ body.page-home {
 }
 
 .btn-explore {
+    margin-top: 1.5rem;
     border: none;
     background: #047857;
     color: #fff;
-    padding: 0.75rem 2rem;
+    padding: 0.85rem 2.5rem;
     border-radius: 999px;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     white-space: nowrap;
-    opacity: 0;
-    transform: scale(0.9);
-    pointer-events: none;
-}
-
-.btn-explore.show {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
 }
 
 .btn-explore:hover {
     background: #059669;
-    transform: scale(1) translateY(-1px);
-    box-shadow: 0 4px 12px rgba(4, 120, 87, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(4, 120, 87, 0.4);
 }
 
 .btn-explore:active {
-    transform: scale(1) translateY(0);
+    transform: translateY(0);
 }
 
 .home-main,

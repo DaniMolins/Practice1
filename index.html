@@ -5,6 +5,7 @@
         <title id="page-title">TripPlanner+</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="css/styles.css" />
+        <link rel="stylesheet" href="css/chat.css" />
         <link rel="stylesheet" id="page-styles" href="" />
     </head>
 
@@ -30,17 +31,29 @@
                 </div>
 
                 <div class="nav-right">
-                    <form class="top-search" role="search">
-                        <input
-                            id="search-input"
-                            type="search"
-                            placeholder="Search"
-                        />
-                    </form>
-                    <button class="btn btn-outline">Search with AI</button>
+                    <button class="btn btn-outline" id="ai-chat-btn" type="button">Chat with AI</button>
                 </div>
             </div>
         </header>
+
+        <!-- AI chat -->
+        <div class="ai-chat-overlay" id="ai-chat-overlay">
+            <div class="ai-chat-popup">
+                <div class="ai-chat-header">
+                    <h3>Trip Suggestions</h3>
+                    <button class="ai-chat-close" id="ai-chat-close">&times;</button>
+                </div>
+                <div class="ai-chat-messages" id="ai-chat-messages">
+                    <div class="ai-message incoming">
+                        <p>Hi! I'm your personal AI travel assistant. Ask me for destination ideas, activity suggestions or travel tips!</p>
+                    </div>
+                </div>
+                <form class="ai-chat-input" id="ai-chat-form">
+                    <input type="text" id="ai-chat-input" placeholder="Ask for trip suggestions..." autocomplete="off" />
+                    <button type="submit" class="ai-send-btn">Send</button>
+                </form>
+            </div>
+        </div>
 
         <main id="page-root" class="page-root">
             <!-- Content loaded here -->
@@ -51,5 +64,6 @@
         <script src="js/trips.js"></script>
         <script src="js/about.js"></script>
         <script src="js/weather.js"></script>
+        <script src="js/ai.js"></script>
     </body>
 </html>
