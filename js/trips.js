@@ -2,13 +2,6 @@ function initTrips() {
   let currentSlide = 0;
   let carouselInterval;
 
-  const tripDestination = localStorage.getItem("tripDestination");
-  if (tripDestination) {
-    const destination = document.querySelector("#route-destination");
-    if (destination) destination.value = tripDestination;
-    localStorage.removeItem("tripDestination");
-  }
-
   function initCarousel() {
     const slides = document.querySelectorAll(".carousel-img");
     if (!slides.length) return;
@@ -767,8 +760,16 @@ function initTrips() {
     });
   }
 
-  // Section toggle removed - now using normal scrolling
-
   initCarousel();
   initRouteForm();
+
+  // Load destination from home page (must be after form reset)
+  const tripDestination = localStorage.getItem("tripDestination");
+  if (tripDestination) {
+    const destination = document.querySelector("#route-destination");
+    if (destination) {
+      destination.value = tripDestination;
+      localStorage.removeItem("tripDestination");
+    }
+  }
 }

@@ -8,8 +8,6 @@ function initAbout() {
   // EmailJS API endpoint
   const EMAILJS_API_URL = "https://api.emailjs.com/api/v1.0/email/send";
 
-  // Section toggle removed - now using normal scrolling
-
   // Contact form handling
   const contactForm = document.getElementById("contact-form");
   const statusEl = document.getElementById("contact-status");
