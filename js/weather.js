@@ -1,6 +1,6 @@
 function initWeather() {
-  const API_KEY = "e5c7883f8b213eec83b18b1f3d0b3f2e"; // borrar abans de submitejar
-  const BASE_URL = "https://api.openweathermap.org/data/2.5";
+   const BASE_URL = "https://api.openweathermap.org/data/2.5";
+   const API_KEY = CONFIG.WEATHER_API_KEY;
 
   /* API functions */
 
