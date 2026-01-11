@@ -77,27 +77,24 @@ function initWeather() {
 
   /* main weather logic */
 
-  async function searchWeather(city) {
-    const container = document.getElementById("weather-results-container");
-    if (!container) return;
+async function searchWeather(city) {
+  const container = document.getElementById("weather-results-container");
+  if (!container) return;
 
-    container.innerHTML = showLoading();
-    showResults();
+  container.innerHTML = showLoading();
 
-    try {
-      const currentData = await fetchCurrentWeather(city);
-      container.innerHTML = "";
+  try {
+    const currentData = await fetchCurrentWeather(city);
+    container.innerHTML = "";
 
-      const currentCard = getCurrentWeather(currentData);
-      container.appendChild(currentCard);
-    } catch (err) {
-      container.innerHTML = showError(
-        err.message || "Unable to fetch weather data. Please try again.",
-      );
-    }
+    const currentCard = getCurrentWeather(currentData);
+    container.appendChild(currentCard);
+  } catch (err) {
+    container.innerHTML = showError(
+      err.message || "Unable to fetch weather data. Please try again.",
+    );
   }
-
-  /* Section toggle removed - now using normal scrolling */
+}
 
   /* form handling */
 
