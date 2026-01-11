@@ -422,7 +422,7 @@ function initTrips() {
           </form>
         `;
 
-        // ===== ACTIVITIES FACE =====
+        //  ACTIVITIES from here
         const activitiesCard = document.createElement("div");
         activitiesCard.className = "trip-card-face trip-card-face-activities";
         activitiesCard.innerHTML = `
